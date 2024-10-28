@@ -30,22 +30,23 @@ pipeline {
         }
 
         stage('Deploy') {
-            when {
-                expression { currentBuild.result == null || currentBuild.result == 'SUCCESS' }
-            }
-            steps {
-                script {
-                    echo 'Building Docker image...'
-                    sh 'docker build -t taskmanager-app .'
+    steps {
+        script {
+            echo 'Building Docker image...'
+            // Use the full Docker path
+            sh '/usr/local/bin/docker build -t taskmanager-app .'
 
-                    echo 'Stopping and removing old container...'
-                    sh 'docker stop taskmanager-app || true && docker rm taskmanager-app || true'
+            echo 'Stopping and removing old container...'
+            // Stop and remove any existing container named taskmanager-app
+            sh '/usr/local/bin/docker stop taskmanager-app || true && /usr/local/bin/docker rm taskmanager-app || true'
 
-                    echo 'Running new Docker container...'
-                    sh 'docker run -d -p 8080:8080 --name taskmanager-app taskmanager-app'
-                }
-            }
+            echo 'Running new Docker container...'
+            // Run the Docker container, mapping port 8080 on host to 8080 in container
+            sh '/usr/local/bin/docker run -d -p 8080:8080 --name taskmanager-app taskmanager-app'
         }
+    }
+}
+
     }
 
     post {
