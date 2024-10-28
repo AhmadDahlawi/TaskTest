@@ -1,6 +1,5 @@
 pipeline {
     agent any
-
     stages {
         stage('Checkout Code') {
             steps {
@@ -10,26 +9,25 @@ pipeline {
 
         stage('Build') {
             steps {
-                sh 'mvn clean install'
+                sh '/usr/local/apache-maven/bin/mvn clean install'
             }
         }
 
         stage('Test') {
             steps {
-                sh 'mvn test'
+                sh '/usr/local/apache-maven/bin/mvn test'
             }
         }
 
         stage('Package') {
             steps {
-                sh 'mvn package'
+                sh '/usr/local/apache-maven/bin/mvn package'
             }
         }
 
         stage('Deploy') {
             steps {
                 echo 'Deploying the application...'
-                // Add deployment steps, such as copying files to a server or deploying to Docker
             }
         }
     }
