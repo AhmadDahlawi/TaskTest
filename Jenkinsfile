@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Checkout Code') {
             steps {
-                git url: 'https://github.com/AhmadDahlawi/taskmanager.git', branch: 'master'
+                git url: 'https://github.com/AhmadDahlawi/TaskTest.git', branch: 'master'
             }
         }
 
