@@ -1,10 +1,12 @@
 pipeline {
     agent any
-
+    tools {
+        maven 'Maven 3.x' // Replace with the name you configured in Jenkins
+    }
     stages {
         stage('Checkout Code') {
             steps {
-                git url: 'https://github.com/AhmadDahlawi/TaskTest.git', branch: 'master'
+                git url: 'https://github.com/AhmadDahlawi/TaskTest.git', branch: 'main' // Ensure branch name matches your repo
             }
         }
 
@@ -29,7 +31,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying the application...'
-                // Add deployment steps, such as copying files to a server or deploying to Docker
+                // Add deployment steps as needed
             }
         }
     }
