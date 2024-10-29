@@ -2,6 +2,15 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Task Manager</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f4f9; margin: 0; padding: 20px; color: #333; }
+        h1 { color: #0066cc; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        table, th, td { border: 1px solid #ccc; }
+        th, td { padding: 10px; text-align: left; }
+        a { color: #0066cc; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+    </style>
 </head>
 <body>
     <h1>Task List</h1>
@@ -23,4 +32,6 @@
                 <a th:href="@{/tasks/mark/{id}(id=${task.id})}">Mark as Done</a>
             </td>
         </tr>
-    </
+    </table>
+</body>
+</html>
